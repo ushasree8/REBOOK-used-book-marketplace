@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <title>My Orders</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+            <link rel="stylesheet" th:href="@{/css/style.css}">
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-dark bg-dark">
+
+    <div class="container">
+
+        <a class="navbar-brand"
+           th:href="@{/buyer/home}">
+            📚 ReBook
+        </a>
+
+        <form th:action="@{/logout}" method="post">
+            <button class="btn btn-danger">
+                Logout
+            </button>
+        </form>
+
+    </div>
+
+</nav>
+
+<div class="container mt-5">
+
+    <h2 class="mb-4">
+        My Orders 📦
+    </h2>
+
+    <table class="table table-bordered table-hover">
+
+        <thead class="table-dark">
+
+        <tr>
+
+            <th>Order ID</th>
+
+            <th>Books</th>
+
+            <th>Total</th>
+
+            <th>Status</th>
+
+            <th>Date</th>
+
+        </tr>
+
+        </thead>
+
+        <tbody>
+
+        <tr th:each="order : ${orders}">
+
+            <td th:text="${order.id}"></td>
+
+            <td>
+
+                <div th:each="item : ${order.items}">
+
+                    <b th:text="${item.book.title}"></b>
+
+                    ×
+
+                    <span th:text="${item.quantity}"></span>
+
+                </div>
+
+            </td>
+
+            <td>
+
+                ₹<span th:text="${order.totalAmount}"></span>
+
+            </td>
+
+            <td>
+
+                <span class="badge bg-primary"
+                      th:text="${order.status}">
+                </span>
+
+            </td>
+
+            <td th:text="${#temporals.format(order.createdAt,'dd-MM-yyyy HH:mm')}"></td>
+
+        </tr>
+
+        </tbody>
+
+    </table>
+
+    <a class="btn btn-secondary"
+       th:href="@{/buyer/home}">
+        ← Back to Home
+    </a>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<title>Checkout - ReBook</title>
+
+<meta charset="UTF-8">
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+
+</head>
+
+
+<body>
+
+
+<h2>Checkout</h2>
+
+
+<form th:action="@{/checkout/place-order}"
+      th:object="${address}"
+      method="post">
+
+
+<h3>Delivery Address</h3>
+
+
+Full Name:
+<input type="text"
+       th:field="*{fullName}"
+       required>
+<br><br>
+
+
+Phone:
+<input type="text"
+       th:field="*{phone}"
+       required>
+<br><br>
+
+
+House No:
+<input type="text"
+       th:field="*{house}"
+       required>
+<br><br>
+
+
+Street:
+<input type="text"
+       th:field="*{street}"
+       required>
+<br><br>
+
+
+City:
+<input type="text"
+       th:field="*{city}"
+       required>
+<br><br>
+
+
+State:
+<input type="text"
+       th:field="*{state}"
+       required>
+<br><br>
+
+
+Pincode:
+<input type="text"
+       th:field="*{pincode}"
+       required>
+<br><br>
+
+
+<button type="submit">
+Place Order
+</button>
+
+
+</form>
+
+
+</body>
+
+</html>
